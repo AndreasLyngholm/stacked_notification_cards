@@ -40,9 +40,11 @@ class NotificationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: padding,
-      height: height,
+      height: (padding?.top == 0.0 && padding?.bottom == 0.0) ? height : null,
+      padding: (padding?.top == 0.0 && padding?.bottom == 0.0) ? null : EdgeInsets.only(bottom: 16.0),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(cornerRadius),
@@ -82,8 +84,7 @@ class NotificationTile extends StatelessWidget {
             ),
             subtitle: Text(
               subtitle,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+              overflow: (padding?.top == 0.0 && padding?.bottom == 0.0) ? TextOverflow.ellipsis : TextOverflow.visible,
               style: subtitleTextStyle,
             ),
           ),

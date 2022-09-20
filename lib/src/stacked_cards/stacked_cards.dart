@@ -80,7 +80,7 @@ class StackedCards extends StatelessWidget {
         closeThreshold: 0.5,
         motion: BehindMotion(),
         dismissible: DismissiblePane(
-          onDismissed: () => onTapClearAll,
+          onDismissed: () => onTapClearAll(),
         ),
         children: [
           SlideButton(

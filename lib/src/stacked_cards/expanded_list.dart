@@ -233,24 +233,6 @@ class _BuildWithAnimationState extends State<BuildWithAnimation> with SingleTick
                   color: widget.tileColor,
                   boxShadow: widget.boxShadow,
                   height: widget.containerHeight,
-                  child: widget.view,
-                  onTap: (context) async {
-                    Slidable.of(context)?.close();
-                    widget.onTapView(widget.index);
-                  },
-                  leftCornerRadius: widget.cornerRadius,
-                  rightCornerRadius: widget.cornerRadius,
-                ),
-                SlideButton(
-                  padding: EdgeInsets.fromLTRB(
-                    0,
-                    widget.spacing,
-                    widget.tilePadding,
-                    widget.endPadding,
-                  ),
-                  color: widget.tileColor,
-                  boxShadow: widget.boxShadow,
-                  height: widget.containerHeight,
                   child: widget.clear,
                   onTap: (context) {
                     _animationController.forward().then(
@@ -262,7 +244,17 @@ class _BuildWithAnimationState extends State<BuildWithAnimation> with SingleTick
                 ),
               ],
             ),
-            child: widget.child,
+            child: Builder(builder: (context) => GestureDetector(
+                onTap: () {
+                  if (Slidable.of(context)!.actionPaneType.value == ActionPaneType.none) {
+                    Slidable.of(context)!.openEndActionPane();
+                  } else {
+                    Slidable.of(context)!.close();
+                  }
+                },
+                child: widget.child,
+              )
+            ),
           ),
         ),
       ),
