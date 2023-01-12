@@ -43,8 +43,8 @@ class NotificationTile extends StatelessWidget {
 
     return Container(
       margin: padding,
-      height: (padding?.top == 0.0 && padding?.bottom == 0.0) ? height : null,
-      padding: (padding?.top == 0.0 && padding?.bottom == 0.0) ? null : EdgeInsets.only(bottom: 16.0),
+      height: null,
+      padding: EdgeInsets.only(bottom: 16.0),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(cornerRadius),
@@ -59,9 +59,10 @@ class NotificationTile extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    cardTitle,
-                    style: kCardTopTextStyle,
+                    title,
                     maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: titleTextStyle,
                   ),
                 ),
                 Text(
@@ -72,19 +73,14 @@ class NotificationTile extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 17,
+            height: 16,
           ),
           ListTile(
             leading: leading,
-            title: Text(
-              title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: titleTextStyle,
-            ),
+            title: null,
             subtitle: Text(
               subtitle,
-              overflow: (padding?.top == 0.0 && padding?.bottom == 0.0) ? TextOverflow.ellipsis : TextOverflow.visible,
+              overflow: TextOverflow.visible,
               style: subtitleTextStyle,
             ),
           ),
